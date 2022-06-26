@@ -1,6 +1,5 @@
 {
     "name": "ambyrelan/php-mvc-framework",
-    "description": "model view controller framework build",
     "autoload": {
         "psr-4": {
             "Ambyrelan\\PhpMvcFramework\\": "src/"
@@ -12,10 +11,10 @@
             "email": "89077791+AmbyrElan@users.noreply.github.com"
         }
     ],
-"autoload": {
-    "psr-4": {
-        "app\\": "./"
-    }
-},
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
     "require": {}
 }
