@@ -51,6 +51,15 @@ class Router
             return $this->renderView($callback);
         }
 
+        if(is_array($callback)) {
+            // create instance of controller
+            // turn sitecontroller into an object
+            // grab controller name from index.php (SiteController::Class, '...')
+            // second element is the method
+            $callback[0] = new $callback[0]();
+        }
+
+        // calls the method statically
         return call_user_func($callback);
     }
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace app\controllers;
-use app\core\Application;
+use app\core\Controller;
 
 /** 
  * Class SiteController
@@ -9,19 +9,21 @@ use app\core\Application;
  * @author AmbyrElan <89077791+AmbyrElan@users.noreply.github.com>
  * @package app\controllers
  */
-class SiteController
+class SiteController extends Controller
 {
     public function home()
     {
         $params = [
             'name' => "AmbyrElan"
         ];
-        return Application::$app->router->renderView('home', $params);
+        return $this->render('home', $params);
     }
+
     public function contact()
     {
-        return Application::$app->router->renderView('contact');
+        return $this->render('contact');
     }
+
     public function handleContact()
     {
         // executed after post
