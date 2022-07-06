@@ -51,13 +51,22 @@ class Router
             return $this->renderView($callback);
         }
 
+        if(is_array($callback)) {
+            // create instance of controller
+            // turn sitecontroller into an object
+            // grab controller name from index.php (SiteController::Class, '...')
+            // second element is the method
+            $callback[0] = new $callback[0]();
+        }
+
+        // calls the method statically
         return call_user_func($callback);
     }
 
-    public function renderView($view) 
+    public function renderView($view, $params = []) 
     {
         $layoutContent = $this->layoutContent();
-        $viewContent = $this->renderOnlyView($view);
+        $viewContent = $this->renderOnlyView($view, $params);
         return str_replace('{{content}}', $viewContent, $layoutContent);
     }
 
@@ -80,8 +89,12 @@ class Router
         return ob_get_clean();
     }
 
-    protected function renderOnlyView($view)
+    protected function renderOnlyView($view, $params)
     {
+        foreach ($params as $key => $value) {
+            // $$ explicitly grabs the variable name
+            $$key = $value;
+        }
         ob_start();
         include_once Application::$ROOT_DIR."/views/$view.php";
         return ob_get_clean();
