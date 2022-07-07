@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 use app\core\Controller;
+use app\core\Application;
+use app\core\Request;
 
 /** 
  * Class SiteController
@@ -24,8 +26,12 @@ class SiteController extends Controller
         return $this->render('contact');
     }
 
-    public function handleContact()
+    public function handleContact(Request $request)
     {
+        // access request instance
+        // call the getbody
+        $body = $request->getBody();
+
         // executed after post
         // of the contact form
         return 'Handling submitted data';
