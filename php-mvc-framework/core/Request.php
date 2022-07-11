@@ -22,9 +22,19 @@ Class Request
         return substr($path, 0, $position);
     }
 
-    public function getMethod()
+    public function method()
     {
         return strtolower($_SERVER['REQUEST_METHOD']);
+    }
+
+    public function isGet()
+    {
+        return $this->method() === 'get';
+    }
+
+    public function isPost()
+    {
+        return $this->method() === 'post';
     }
 
     public function getBody()
@@ -33,13 +43,13 @@ Class Request
 
         // iterate over super global GET
         // filter input to remove special characters
-        if ($this->getMethod === 'get') {
+        if ($this->method === 'get') {
             foreach ($_GET as $key => $value) {
               $body[$key] = filter_input(INPUT_GET, $key, FILTER_SANITIZE_SPECIAL_CHARS);  
             }
         }
 
-        if ($this->getMethod() === 'post') {
+        if ($this->method() === 'post') {
             foreach ($_POST as $key => $value) {
                 $body[$key] = filter_input(INPUT_POST, $key, FILTER_SANITIZE_SPECIAL_CHARS);
             }
