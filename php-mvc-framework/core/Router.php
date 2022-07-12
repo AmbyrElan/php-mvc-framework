@@ -56,7 +56,8 @@ class Router
             // turn sitecontroller into an object
             // grab controller name from index.php (SiteController::Class, '...')
             // second element is the method
-            $callback[0] = new $callback[0]();
+            Application::$app->controller = new $callback[0]();
+            $callback[0] = Application::$app->controller;
         }
 
         // calls the method statically
@@ -78,11 +79,12 @@ class Router
 
     protected function layoutContent()
     {
+        $layout = Application::$app->controller->layout;
         // start output cache
         ob_start();
 
         // actual output
-        include_once Application::$ROOT_DIR."/views/layouts/main.php";
+        include_once Application::$ROOT_DIR."/views/layouts/$layout.php";
 
         // return this instead of outputting to browser
         // clear buffer
