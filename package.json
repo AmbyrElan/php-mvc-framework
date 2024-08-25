@@ -1,6 +1,6 @@
 {
   "name": "php-mvc-framework",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Project building MVC Framework from scratch in PHP",
   "main": "index.js",
   "scripts": {
