@@ -1,12 +1,5 @@
 <?php
 
-/** 
- * AmbyrElan
- * 5/14/2022
- *
- *  Leftoff at 21:08
- */
-
 require_once __DIR__.'/vendor/autoload.php';
 
 use app\core\Application;
